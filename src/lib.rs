@@ -453,7 +453,7 @@
 //! Cards could be printed using `show` or `show_with_docs` methods into
 //! readable Strings.
 #![no_std]
-#![deny(unused_crate_dependencies)]
+//#![deny(unused_crate_dependencies)]
 
 use primitive_types::H256;
 use scale_info::interner::UntrackedSymbol;

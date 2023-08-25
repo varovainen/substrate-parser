@@ -25,6 +25,8 @@ use crate::special_indicators::{
 };
 use crate::traits::{AddressableBuffer, AsMetadata, AsPallet, ExternalMemory, ResolveType};
 use crate::MarkedData;
+#[cfg(feature = "serde-std")]
+use serde::Serialize;
 
 #[derive(Debug)]
 pub struct DraftMetadataHeader {
@@ -56,11 +58,13 @@ pub enum EntryDetails {
 }
 
 #[derive(Clone, Debug, Decode, Encode)]
+#[cfg_attr(feature = "serde-std", derive(Serialize))]
 pub struct ShortRegistry {
     pub types: Vec<ShortRegistryEntry>,
 }
 
 #[derive(Clone, Debug, Decode, Encode)]
+#[cfg_attr(feature = "serde-std", derive(Serialize))]
 pub struct ShortRegistryEntry {
     pub id: u32,
     pub ty: Type<PortableForm>,
@@ -478,6 +482,7 @@ where
 }
 
 #[derive(Debug, Decode, Encode)]
+#[cfg_attr(feature = "serde-std", derive(Serialize))]
 pub struct ShortMetadata {
     pub chain_version_printed: String, // restore later to set of chain name, encoded chain version, and chain version ty
     pub short_registry: ShortRegistry,

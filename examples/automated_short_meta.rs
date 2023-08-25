@@ -65,6 +65,12 @@ fn main() {
         "exclusion worked, number of hashable entries after it: {}",
         excluded.len()
     );
+
+    #[cfg(feature = "serde-std")]
+    println!(
+        "serialized short metadata: {}",
+        serde_json::to_string(&short_metadata).unwrap()
+    );
 }
 
 #[cfg(not(feature = "std"))]
